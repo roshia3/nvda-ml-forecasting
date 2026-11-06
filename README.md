@@ -42,6 +42,65 @@ This sits between theory (Fama) and heavy deep-learning work (Fischer & Krauss, 
 
 ---
 
+## Why These Two Models?
+
+### Logistic Regression: the simple baseline
+
+**What it is:** A model that takes a weighted sum of the features (return, volume, momentum, volatility) and turns it into a probability that tomorrow is an "up" day. If the probability is above 50%, it predicts UP.
+
+**How it thinks:** Each feature gets one weight, and the effects add up in a straight line. For example, "higher momentum nudges the probability up by this much."
+
+| Strengths | Weaknesses |
+|---|---|
+| Fast and easy to train | Can only learn **linear** patterns |
+| Weights are easy to interpret | Can't capture feature interactions on its own |
+| Hard to overfit with only 4 features | May miss more complex behavior |
+
+**Why I chose it:** It is the standard "start simple" model for binary classification. If a straight-line model can't find a signal, that tells us something. It also gives Random Forest a fair, interpretable opponent.
+
+### Random Forest: the flexible challenger
+
+**What it is:** A collection of many decision trees (100 here). Each tree asks a series of yes/no questions about the features, such as "Is volatility above X? Is momentum below Y?", and makes a prediction. The forest takes a **majority vote** across all trees.
+
+**How it thinks:** Each tree trains on a random sample of the data and features, so the trees make different mistakes. Averaging them cancels out much of the noise.
+
+| Strengths | Weaknesses |
+|---|---|
+| Captures **nonlinear** patterns and interactions | Harder to interpret than logistic regression |
+| Needs no feature scaling | Can overfit noisy data, which is a real risk in finance |
+| Works well on small tabular data | Doesn't extrapolate beyond training-data patterns |
+
+**Why I chose it:** It is the natural next step up in complexity. Markets might behave differently depending on conditions, for instance "momentum matters only when volatility is low." A linear model can't express that, but a forest can. I limited it to `max_depth=5` to keep it from memorizing noise.
+
+### Why compare them?
+
+Both models see the **same four features and the same split**, so the only difference is how flexible the model is. This setup lets me ask: *does extra flexibility help, or does it just fit noise?*
+
+| | Logistic Regression | Random Forest |
+|---|---|---|
+| Pattern type | Linear | Nonlinear |
+| Interpretability | High | Medium |
+| Overfitting risk | Low | Higher |
+| Role in this project | Simple baseline | Flexible challenger |
+
+---
+
+## Why NVIDIA (NVDA)?
+
+NVIDIA is a good stress test for prediction models because its price is driven by **several large, changing forces** at once:
+
+- **The 2020 boom.** In 2020, demand for GPUs surged (gaming, data centers) and tech stocks rallied broadly. The start of the dataset captures a sharp market regime change.
+- **The AI wave.** NVIDIA's chips became central to training and running AI models, which made the stock a bellwether for AI sentiment.
+- **Semiconductor cycles.** Chip stocks swing with supply, demand, and industry-wide cycles, so NVDA is exposed to sector moves as well as company news.
+- **Constant news flow.** Earnings, product launches, and macro events produce frequent large moves, so the data is noisy and has real volatility variation.
+- **Accessible data.** It is heavily traded with clean, free daily history on Yahoo Finance.
+
+**Why this matters for the research:** The 2020–2025 window includes several distinct market conditions: a pandemic-era rally, a downturn, and the AI surge. If a model finds a real pattern, a volatile stock like this gives it room to show up. If no pattern shows up even here, that is a meaningful result for the Efficient Market Hypothesis.
+
+**Caveat:** NVDA rose strongly over this period, so "up" days may be more common than "down" days. That is why the majority-class baseline is essential. A model that always guesses UP could look good without learning anything.
+
+---
+
 ## Features and Target
 
 There are four features, intentionally kept small so results stay easy to interpret:
