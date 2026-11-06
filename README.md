@@ -6,17 +6,17 @@
 ![Colab](https://img.shields.io/badge/Google%20Colab-ready-orange)
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
 
-**Author:** Roshia Dutta · University of Washington Bothell · CSS 486 (Machine Learning)
+**Author:** Roshia Dutta · University of Washington
 
 ---
 
-## 🔍 Research Question
+## Research Question
 
 > Does a more flexible model (Random Forest) predict next-day stock direction better than a simple linear model (Logistic Regression), and does either beat a trivial baseline?
 
 ---
 
-## 💡 Why This Is Worth Studying
+## Why This Is Worth Studying
 
 Stock prediction is a well-studied problem, so the goal here is **not** to claim a market-beating model. The value is in **how carefully the question is tested**.
 
@@ -30,7 +30,7 @@ This sits between theory (Fama) and heavy deep-learning work (Fischer & Krauss, 
 
 ---
 
-## 📊 Data
+## Data
 
 | Item | Detail |
 |---|---|
@@ -42,9 +42,9 @@ This sits between theory (Fama) and heavy deep-learning work (Fischer & Krauss, 
 
 ---
 
-## 🧮 Features and Target
+## Features and Target
 
-Four features, kept small so results stay easy to interpret:
+There are four features, intentionally kept small so results stay easy to interpret:
 
 | Feature | Definition |
 |---|---|
@@ -61,7 +61,7 @@ Tomorrow's price is used *only* to build the label, never as an input.
 
 ---
 
-## 🤖 Models
+## Models
 
 | Model | Role | Setup |
 |---|---|---|
@@ -73,7 +73,7 @@ Tomorrow's price is used *only* to build the label, never as an input.
 
 ---
 
-## 🧪 Methodology
+## Methodology
 
 ```
 Download data → Build features + labels → Chronological 80/20 split → Train → Evaluate → Visualize
@@ -91,9 +91,9 @@ Choices made to keep the evaluation honest:
 
 ---
 
-## 📈 Results
+## Results
 
-> ⏳ *Experiments in progress. Table and chart will be added once complete.*
+> *Experiments in progress. Table and chart will be added once complete.*
 
 | Model | Test Accuracy |
 |---|---|
@@ -107,7 +107,7 @@ Choices made to keep the evaluation honest:
 
 ---
 
-## ⚠️ Limitations
+## Limitations
 
 Stating these up front is part of doing the research properly.
 
@@ -118,7 +118,7 @@ Stating these up front is part of doing the research properly.
 
 ---
 
-## 🚀 Possible Extensions
+## Possible Extensions
 
 - Statistical significance testing of the accuracy gap (e.g., McNemar's or a binomial test)
 - Walk-forward (rolling window) validation
@@ -127,7 +127,7 @@ Stating these up front is part of doing the research properly.
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 ├── NVDA_Stock_Prediction.ipynb   # Main Colab notebook
@@ -137,14 +137,14 @@ Stating these up front is part of doing the research properly.
 └── README.md
 ```
 
-## ▶️ How to Run
+## How to Run
 
 1. Open `NVDA_Stock_Prediction.ipynb` in Google Colab.
 2. Run all cells. Dependencies: `pandas`, `numpy`, `yfinance`, `scikit-learn`, `matplotlib`.
 
 ---
 
-## 📚 References
+## References
 
 1. Fama, E. F. (1970). *Efficient Capital Markets: A Review of Theory and Empirical Work.* The Journal of Finance.
 2. Fischer, T., & Krauss, C. (2018). *Deep Learning with Long Short-Term Memory Networks for Financial Market Predictions.* European Journal of Operational Research.
