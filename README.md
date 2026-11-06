@@ -81,11 +81,11 @@ Download data → Build features + labels → Chronological 80/20 split → Trai
 
 Choices made to keep the evaluation honest:
 
-- ✅ **Chronological split.** The earliest 80% of days are for training and the latest 20% for testing. No random shuffling, so the model never trains on the future.
-- ✅ **Boundary gap.** One day is dropped between train and test so the last training label doesn't depend on the first test-period price.
-- ✅ **No scaler leakage.** `StandardScaler` is fit on training data only.
-- ✅ **No fake final label.** The last row is dropped because its "tomorrow" doesn't exist.
-- ✅ **Identical inputs for every model.** Same features, same split, fixed random seed.
+- **Chronological split.** The earliest 80% of days are for training and the latest 20% for testing. No random shuffling, so the model never trains on the future.
+- **Boundary gap.** One day is dropped between train and test so the last training label doesn't depend on the first test-period price.
+- **No scaler leakage.** `StandardScaler` is fit on training data only.
+- **No dummy final label.** The last row is dropped because its "tomorrow" doesn't exist.
+- **Identical inputs for every model.** Same features, same split, fixed random seed.
 
 **Metric:** classification accuracy, plus confusion matrices to show *which* mistakes each model makes.
 
